@@ -45,3 +45,9 @@ google-drive-ocamlfuse -version
 
 Then continue with authorization and automount in
 [the setup guide](docs/google_drive_ocamlfuse_setup.md#2-authorize-google-drive-once-per-account).
+
+## Configure GDO credentials
+
+google-drive-ocamlfuse \
+  -id "YOUR_CLIENT_ID" \
+  -secret "YOUR_CLIENT_SECRET"
