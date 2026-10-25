@@ -48,6 +48,38 @@ Then continue with authorization and automount in
 
 ## Configure GDO credentials
 
+```bash
 google-drive-ocamlfuse \
   -id "YOUR_CLIENT_ID" \
   -secret "YOUR_CLIENT_SECRET"
+```
+
+## Repository layout
+
+```
+google-drive-auto-mount-and-sync/
+├── README.md
+├── docs/
+│   ├── google_drive_ocamlfuse_setup.md     ← install, OAuth, manual mount, automount
+│   ├── stow_and_multiple_accounts.md       ← per-account units with Stow (read this for multi-PC setups)
+│   └── encrypte_individual_files.md
+├── gdrive-default/                         ← stow package: google-drive.service (single account)
+├── gdrive-zdm2718/                         ← stow package: gdrive-zdm2718.service
+└── gdrive-zmerino2718/                     ← stow package: gdrive-zmerino2718.service
+```
+
+## Choosing accounts per machine
+
+Each account's systemd unit is its own [GNU Stow](https://www.gnu.org/software/stow/) package, so
+a machine only mounts the accounts you stow:
+
+```bash
+stow -v --no-folding -t ~ gdrive-zdm2718                         # machine with one account
+stow -v --no-folding -t ~ gdrive-zdm2718 gdrive-zmerino2718      # machine with both
+```
+
+Authorize each account first, then enable its unit. Details:
+[docs/stow_and_multiple_accounts.md](docs/stow_and_multiple_accounts.md).
+
+This repo is also a submodule of [zmerino/dotfiles](https://github.com/zmerino/dotfiles)
+(`modules/gdrive`), whose `bootstrap.sh` stows the accounts listed in that machine's `machine.conf`.

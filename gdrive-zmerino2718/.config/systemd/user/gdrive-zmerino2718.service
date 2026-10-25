@@ -1,0 +1,18 @@
+# ~/.config/systemd/user/gdrive-zmerino2718.service
+[Unit]
+Description=Mount Google Drive (zmerino2718) with ocamlfuse
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/nm-online -q --timeout=30
+ExecStartPre=/bin/mkdir -p %h/zmerino2718_gdrive
+ExecStart=/usr/bin/google-drive-ocamlfuse -label zmerino2718 -f %h/zmerino2718_gdrive
+ExecStop=/usr/bin/fusermount -u %h/zmerino2718_gdrive
+Restart=always
+RestartSec=5s
+KillMode=control-group
+
+[Install]
+WantedBy=default.target

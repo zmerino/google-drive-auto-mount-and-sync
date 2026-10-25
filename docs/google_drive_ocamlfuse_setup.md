@@ -100,6 +100,12 @@ fusermount3 -u ~/GoogleDrive
 
 ## 4. Automount on login using a systemd user service
 
+> **Prefer the repo's Stow packages.** The units below are versioned in this repo, with one
+> package per account, so you can pick which accounts a machine mounts. See
+> [stow_and_multiple_accounts.md](stow_and_multiple_accounts.md). The manual steps that follow
+> are the single-account walkthrough; the `gdrive-default` package is the same unit with a
+different mount point (`~/zdm2718`).
+
 Create the service file:
 
 ```bash
