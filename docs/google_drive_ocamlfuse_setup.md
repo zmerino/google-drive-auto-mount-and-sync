@@ -66,6 +66,14 @@ Run as your **normal user**, not with `sudo`:
 google-drive-ocamlfuse -id 'YOUR_CLIENT_ID' -secret 'YOUR_CLIENT_SECRET'
 ```
 
+NOTE: If authentication timesout, try increasing connection timeout in
+`~/.gdfuse/default/config`. Add,
+
+```bash
+[network]
+connect_timeout_ms = 30000
+```
+
 Complete Google's browser authorization. GDO maintains its local account
 configuration/cache under `~/.gdfuse/default/`. **Keep OAuth credentials and
 tokens private.**

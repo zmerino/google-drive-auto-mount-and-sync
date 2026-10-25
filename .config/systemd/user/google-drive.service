@@ -1,0 +1,13 @@
+[Unit]
+Description=Google Drive OCamlFUSE mount
+
+[Service]
+Type=exec
+ExecStartPre=/usr/bin/mkdir -p %h/zdm2718
+ExecStart=/usr/bin/google-drive-ocamlfuse %h/zdm2718
+ExecStop=/usr/bin/fusermount3 -u %h/zdm2718
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=default.target
